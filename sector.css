@@ -1,0 +1,27 @@
+.swal-text{
+    text-align: center;
+}
+
+.swal-icon--success:before,
+.swal-icon--success::after,
+.swal-icon--success__jide-corners{
+    background: none !important;
+}
+
+.swal-button{
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #198754;
+    font-size: 12px;
+    border: 1px solid #198754;
+}
+
+.swal-button:focus{
+    box-shadow: none;
+}
+
+.swal-button:not([disable]):hover{
+    background: transparent;
+    color: black;
+    border: 1px solid #198754;
+}

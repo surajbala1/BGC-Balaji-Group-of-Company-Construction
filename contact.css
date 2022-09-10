@@ -1,0 +1,72 @@
+.mid-design{
+    height: 850px;
+    background-repeat: no-repeat;
+    width: 1519px;
+    background-color: #4444f8;
+}
+
+
+.container{
+    display: grid;
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.box1{
+    height: 500px;
+    color: white;
+    border: 2px solid white;
+    position: relative;
+    width: 400px;
+    margin-left: -7px;
+
+
+}
+
+.box1 h2{
+    text-align: center;
+    font-size: 29px;
+}
+
+.box1 h2{
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: -160px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box1 p{
+    margin-left: 40px;
+    font-size: 20px;
+    margin-top: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.swal-text{
+    text-align: center;
+}
+
+.swal-icon--success:before,
+.swal-icon--success::after,
+.swal-icon--success__jide-corners{
+    background: none !important;
+}
+
+.swal-button{
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #198754;
+    font-size: 12px;
+    border: 1px solid #198754;
+}
+
+.swal-button:focus{
+    box-shadow: none;
+}
+
+.swal-button:not([disable]):hover{
+    background: transparent;
+    color: black;
+    border: 1px solid #198754;
+}

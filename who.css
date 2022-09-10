@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?familiy=poppins:200,300,400,500,600,700,800,900&display=swap');
+
+.accordion{
+    max-width: 500px;
+    margin-top: -550px;
+    font-size: 24px;
+    margin-left: 110px;
+}
+
+.accordion .contentBx{
+    position: relative;
+    margin: 10px 20px;
+}
+
+.accordion .contentBx .label{
+    position: relative;
+    padding: 7px;
+    background: #011c99;
+    color:lightblue;
+    cursor: pointer;
+}
+
+.accordion .contentBx .label::before{
+    content: '+';
+    position: absolute;
+    top: 27px;
+    right: -10px;
+    transform: translateY(-50%);
+    font-size: 1.3em;
+}
+
+.accordion .contentBx.active .label::before{
+    content: '-';
+}
+
+.accordion .contentBx .content-one{
+    position: relative;
+    padding: 6px;
+    background: #011c99;
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    font-size: 16x;
+
+}
+
+.accordion .contentBx.active .content-one{
+    height: 100px;
+    padding: 10px;
+}
+
+.accordion .contentBx .content-one p{
+    color: #fff;
+    font-size: 19px;
+}
+
+.accordion .contentBx .label:hover{
+    color: #fff;
+}

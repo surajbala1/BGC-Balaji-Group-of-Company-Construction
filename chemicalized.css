@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 'Poppins', sans-serif;
+}
+
+body{
+    width: 100%;
+    background:#E5E7EB ;
+    position: relative;
+    display: flex;
+}
+
+#menu{
+    background: #233b70;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#menu .logo{
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 30px 0 0 30px;
+
+}
+
+#menu .logo img{
+    width: 80px;
+    margin-right: 15px;
+}
+
+#menu .items{
+    margin-top: 40px;
+}
+
+#menu .items li{
+    list-style: none;
+    padding: 15px 0;
+    transition: 0.3s ease;
+}
+
+#menu .items li:hover{
+    background: #253047;
+    cursor: pointer;
+}
+
+#menu .items li:nth-child(3){
+    border-left: 4px solid #fff;
+
+}
+
+#menu .items li i{
+    color: rgb(134, 141, 151);
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 10px 0 25px;
+}
+
+#menu .items li:hover i,
+#menu .items li:hover a{
+    color: #F3F4F6;
+
+}
+
+#menu .items li a{
+    text-decoration: none;
+    color: rgb(215, 223, 235);
+    font-weight: 300px;
+    transition: 0.3s ease;
+}
+
+#interface{
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    position: relative;
+}
+
+#interface .navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 15px 30px;
+    border-bottom: 3px solid #594ef7;
+    position: fixed;
+    width: calc(100% - 300px);
+
+}
+
+#interface .navigation .search{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid #d7dbe6;
+    border-radius: 4px;   
+}
+
+#interface .navigation .search i{
+    margin-right: 14px;
+}
+
+
+#interface .navigation .search input{
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+#interface .navigation .profile{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#interface .navigation .profile i{
+    margin-right: 20px;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+#interface .navigation .profile img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;   
+}
+
+.n1{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#menu-btn{
+    display: none;
+    color: #2b2b2b;
+    font-size: 20px;
+    cursor: pointer;margin-right: 20px;
+}
+
+.i-name{
+    color: #444a53;
+    padding: 30px 30px 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 70px;
+}
+
+.values{
+    padding: 30px 30px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+
+.values .val-box{
+    background: #fff;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-image: url('https://assets.siemens-energy.com/siemens/assets/api/uuid:62b6ef59-880a-4258-a69d-9e769b5f0ce2/width:2000/quality:high/senstechnology-graphic.jpg'); width: 100%; height: 20%;
+    background-repeat: no-repeat;
+}
+
+.values .val-box .cement{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .cement1{
+    font-size: 17px;
+    margin-left: 70px;
+    width: 221px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .product{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 230px;
+    color: #fff;
+}
+
+.values .val-box .product1{
+    font-size: 17px;
+    margin-left: 22px;
+    width: 221px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity1{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .Waterproofing{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .Waterproofing1{
+    font-size: 17px;
+    margin-left: 25px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity2{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .adhesives{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 166px;
+    color: #fff;
+}
+
+.values .val-box .adhesives1{
+    font-size: 17px;
+    margin-left: 65px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity3{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .rebar{
+    font-size: 20px;
+    font-weight:600;
+    color: #fff;
+}
+
+.values .val-box .rebar1{
+    font-size: 17px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity4{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .epoxy{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 167px;
+    color: #fff;
+}
+
+.values .val-box .epoxy1{
+    font-size: 17px;
+    margin-left: 29px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity5{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .concrete{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .concrete1{
+    font-size: 17px;
+    margin-left: 38px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+.values .val-box .quantity6{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .polymer{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 167px;
+    color: #fff;
+}
+
+.values .val-box .polymer1{
+    font-size: 17px;
+    margin-left: 1px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity7{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .mould{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .mould1{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity8{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .protective{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 167px;
+    color: #fff;
+}
+
+.values .val-box .protective1{
+    font-size: 17px;
+    margin-left: 8px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity9{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .floor{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .floor1{
+    font-size: 17px;
+    margin-left: 12px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity10{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .bond{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 167px;
+    color: #fff;
+}
+
+.values .val-box .bond1{
+    font-size: 17px;
+    margin-left: 7px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity11{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .Plaster{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 40px;
+    color: #fff;
+}
+
+.values .val-box .Plaster1{
+    font-size: 17px;
+    margin-left: 17px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity12{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .tile{
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 167px;
+    color: #fff;
+}
+
+.values .val-box .tile1{
+    font-size: 17px;
+    margin-left: 13px;
+    width: 220px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .quantity13{
+    font-size: 17px;
+    margin-left: 10px;
+    width: 50px;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 3px;
+}
+
+.values .val-box .btn{
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 110px;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #0f2d6e;
+}
+
+@media (max_width:769px) {
+    #menu {
+        width: 270px;
+        position: fixed;
+        left: -270px;
+    }
+    #interface{
+        width: 100%;
+        margin-left: 0px;
+        display: inline-block;
+    }
+}

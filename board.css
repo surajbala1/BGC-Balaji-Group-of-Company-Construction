@@ -1,0 +1,43 @@
+.overview{
+    background-color: #4863A0;
+}
+
+.overview h2{
+    text-align: center;
+    color: #fff;
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.overview p{
+    color:whitesmoke;
+    font-size: 22px;
+    text-align: center;
+}
+
+.container1{
+    margin: auto;
+    overflow: auto;
+    background-color: #4863A0;
+    height: 1250px;
+}
+
+.gallery{
+    margin: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 310px;    
+}
+
+.gallery img{
+    width: 100%;
+    height: auto;
+}
+
+.desc{
+    padding: 20px;
+    text-align: center;
+    color: #fff ;
+    font-weight: bold;
+    font-size: 20px;
+}
