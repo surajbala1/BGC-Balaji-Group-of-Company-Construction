@@ -1,0 +1,25 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <title> Login Help | BGC</title>
+</head>
+<body style="background-color: #0a67c4;">
+    <p style="color: #fff; text-align:center; font-size: 20px;"> Note: This Service can be availed only if your user name and official email id is configured in system! For any further assistance kindly write to <a href="mailto:surajbala155@outlook.com" style="color:thistle; text-decoration: none;">Login Support</a> </p>
+    <div class="mydiv" style="border: 1px outset black; background-color: #fff; border-radius: 7px; width:360px; height:240px; margin-left:600px; margin-top: 220px;"> <br>
+        <form action="" method="POST">
+            {%csrf_token%}
+        <label for="username" style="color: black; font-family: 'Times New Roman', Times, serif; font-size: 15px; margin-left: 50px;;"> User Name </label> <br>
+        <input type="text" class="uname" name="uname" id="uname" style="margin-left: 50px; width: 220px; border-radius: 4px; margin-top: 10px;" placeholder="---User Name---" required> <br> <br>
+        <label for="username" style="color: black; font-family: 'Times New Roman', Times, serif; font-size: 15px; margin-left: 50px;;"> New Password </label> <br>
+        <input type="password" class="pass" name="password" id="password" style="margin-left: 50px; width: 220px; border-radius: 4px; margin-top: 10px;" placeholder="---Password---" required> <br> <br>
+        <button type="submit" class="btn" name="btn" id="bt" style="margin-left: 50px; margin-top: 17px;border-radius: 6px;"> Reset Password </button>
+        </form>
+    </div>
+
+</body>
+</html>

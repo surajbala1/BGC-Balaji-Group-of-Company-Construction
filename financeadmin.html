@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'financeadmin.css'%}">
+    <title> Admin Panel | BGC</title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/adminpanel">Dashboard</a></li>
+            <li><i class="fas fa-people-arrows"></i><a href="http://127.0.0.1:8000/balajigroup/operationadmin">Operation Panel</a></li>
+            <li><i class="fas fa-desktop"></i><a href="http://127.0.0.1:8000/balajigroup/itadmin">IT Operation</a></li>
+            <li><i class="fas fa-rupee-sign"></i><a href="http://127.0.0.1:8000/balajigroup/financeadmin">Finance Department</a></li>
+            <li><i class="fas fa-restroom"></i><a href="http://127.0.0.1:8000/balajigroup/hradmin">HR Department</a></li>
+            <li><i class="fas fa-tools"></i><a href="http://127.0.0.1:8000/balajigroup/maintananceadmin">Maintanance</a></li>
+            <li><i class="fas fa-unlock"></i><a href="http://127.0.0.1:8000/balajigroup/passwordreset">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Finance Department <i class="fa fa-user-plus" style="margin-left: 717px;"><a href="http://127.0.0.1:8000/balajigroup/financeuser" style="text-decoration: none; margin-left: 5px; color:#253047"> Finance </a></i>
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <i class="fas fa-people-carry"></i>
+                <div>
+                    <h3>Operation</h3>
+                    <span>New Users</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-desktop"></i>
+                <div>
+                    <h3>IT Dept</h3>
+                    <span>Total Order</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-rupee-sign"></i>
+                <div>
+                    <h3>Finance</h3>
+                    <span>Product Sell</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-restroom"></i>
+                <div>
+                    <h3>HR Dept</h3>
+                    <span>This Month</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td> Name </td>
+                        <td> Title </td>
+                        <td> Status </td>
+                        <td> Role </td>
+                        <td> </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGYhRXQk7roy_cyszrOSXcBbBDgqlegM5Obg&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> John Doe </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBESEhgSERESGBgRGBISERgYGBIYGBkSGBgZGRgYGBgcIS4lHB4rIRgYJjgmKy8xNTU1GiQ7QDszPy40NTEBDAwMEA8QHhISHjEkJCExNDQ3NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0MTQ0NDQ0NDQ0NDQ0NDQ0NDQ0MTQ0MTQ0NP/AABEIALcBEwMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAABAgADBAUGBwj/xABEEAACAQIDBAgDBQUGBQUAAAABAgADEQQSIQUxQVEGEyJhcYGRoQcysUJScsHRFCPC4fAVM4KSorJDYsPS8SREU4Oz/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAJBEBAQACAQQCAgMBAAAAAAAAAAECESEDEjFRE0EEYSIycUL/2gAMAwEAAhEDEQA/APR0EsAiLLBKggQgSCECQQCNJCIEEYQQiAQIbSCESgWhtDJIBaS0MkKFobSXhvCBaSGSAsloZIAtBaNJAW0lo0kBbSWjSQFtJaNBAFoLQyQEIiFZaYDAoKRGSZBikQMPq5Jk2kgIscRRGUzbJgIRIIZGhhgEMCQiSSQMJBAIRAaSLeS8AkwXgLTS9KNupgcM+IdS2WwVRxY6AE8B3wN1mlbYqmrBWdAzaKpYAk9w4758+7Y+Ie0sSxy12pIdAiBQAO9rZifPyE5atXeo2Z3d2toWZmI1Jtc95J85nbWn1gHhDT5fwG2sfhSOpxVdAt2Chnya6k5DdTfvE9H6F/E9nZcPtEgMxCpWChV10AqAaC5+0ABz5xtNPWpItNri4Nwd0cSokkMkASQyQBJDBAEkMEAQQwGBDFMYwGApimMYpgJJJJAqEdYAIwE1pkwjiKBDKGEMAhEAwQkytqqg2JFzuFxf0hpYIYmaMHEgMGWHMJA4gVOZ458ZdpO1enhhoiIKh1OrOSLkbtAun4jPZ3UGePfGHZxOJw1QA/vEqUjYX1RlZbd/7w+klI8+wRAFgi8dSLk6GbPYexOvxSUzoHN24WA1ImbR2K9NgtSk6G2YZ1Zbjuv3kTodgbNLVBkUkpY3GluG+Zt4dJjyfbnQnPiEWklkCKrHwvx9JhL0HRKgapmKKwzKNLjiLz1Vb5BfeBrNdj6QI+YdqccrZOHfHHG+Y6PAqopqE+UKMv4baTJmr2E4NBLG9sy38GImxvO2N3JXmymrYeSCGaZSSSSQSCGCBIJJIAgMMECGAwmCApimMYjQFkkkgIrRwZSIwM1tNLgYbysNDeVFgMYSq8YGByXxJ6QvgsKoouEqYhzTV7XKIFu7qOLfKB3sJ4XXxZdi2pLG7M/bdjzZ2uTPT/jOLnDHgExXrnw/855KN0zlGpWxw+3MXTsKeIrIBuCPUQeikTb4fp3tNN2LqG33hTf3dSZy0IMiu7o/EzaC/M1Nu9kX+ErMqj8VMWPnp0D4JUB//SeeAyQPUaXxacfNhUbuzsvv2psNo9J8JtOklWnenWwFRMQ9NiLmh8tZqbfaCq2bgRk3bp49MzZWKelWSompDZbcw4KMvmrEecE4u3tT7LDmoHAF7mjyWyKq5QNFsRrz8Ieh1MZHbQMWsy8Rb9bmPVz0cHcP/d0itrDtMEyr2t++ajoxtFabHOQA4XXhcAn9Jzk4enK7rcdKKldabCmaluK03RCfFypPkLGcydk4mlgWxWat1jWyU3qVHCIzAXJbW9iTunSdJ+kNCmFpF0z1AStzoqffY8BofGUVelmzXwrU2xSXCZWB7Jvl+zfeeVpnXlZ4dD0W2cuFwyUwO0R1lQ5mbNUYAscx1PADuAm7WcJ0Y6QVMRh1rFkVAMpZjY510IC2tbQ8b6TssLiA4v6ibxzm9OGWFnLOEMAhnRzSCSSBIphJikyCEwXkJi5oDXki3kvAJgkvAZQDEaMTEYyAXki3ggRRGAhURpvSbKBDJeAmNIMIiZ4weNLt5b8aWscMOaYr/fh/0nk99J6N8aMVmxdKn9yiW83dh/0xPNQZKQ8MUGQGRowm76P9F8Zj2thqRKA2ao/Ypqe9+J7lBPdOo+GHQpMYxxWKQmjTbJTQ3AqVBvLc0XdbidDuIPttGglNAiKqqgCqqgKqrwAA0AlkTby3B/B+nb99jahbiEpoo8ixN/abPA/DPC4Z3qK1Wq6BGoh8hsysHZgFUdo5Sovuv6d6Pmt5fofaW31ufwnx4f13zWobrmNoURUwzqmudCUtxuLgieKYnaTKWW54Hv7h5a+k99x2FZCWpqWRrsyqLsjHUlVGrKdTYag7rg9nx/p90fOZsZhyCjE9evFW3FgOXMbwbzlJriulu+Yu6EYinXqVXq5C6U06suCwCjMGHh2hOc6b4ylUqKKIRQAxcJmykg2BuSb7jpwtNZsio6tdGZTazWJBtx19/Kdb0d6Dtj6D1ajmneww5sSC17sxB3ra404+FpO3VO/eOlfQWscSq4bEHLh8IWxBy2UPYsSrm927Tru4Ag7wZ6hsXHtXDuiZAjFadrWIAGt/5cJh7D6MYXCIqGmrOBbrGFyTxy3+XwE3uGopTTLTAA4Cc8puuuN/jpucNUzKG5gH+Utmt2VUuljvDNfzJI9jNiDO2N3JXnymroYDJBKgExC0LmUO0inLQZpQakHWSbGRmhzTH6yEPKL80l5TmhVwdxhDkxGMN4jGAJIt5IGReC8TNDOzBrxGMMRpFQRxKxHEDwL4lValXaNZmpuFTLSQlTbKgsTfdq2Y+BE5Ce0bSwFNsZVLjVmqa999N3cROfxWwqDlropte5IF/wDMLH3luDE6nt5uJfhcO9SolNFzPUZaaDm7EKo9TOuqdFaDMApdb7rNp/qBnSfDrovSp7RFQuzGglR1BtYObIDcW4M39CY7a33R6lsHZiYXDUsMu6iiJfddgO03iTc+c2BH9flGUSuq4A13cZRiYhrZW+6wVvPd7gesy6g0vzsD48D6zWVmulXmpS/iG3+YAPnNpTF0seIsZaKqoBBU3s4I0JB10IBGo8ROH6Y0nFTq6as5r06a01uSS6ll479MtyZ2mc2F96Nlbz4+dwZiY7DhqiMF7WWouf7iNlzAd7ZQL8Bm5xZuaXHLV24deh2EpsFSmXICFizZr1LXa9uydb906vDU7KBktYWsALWHKbQ4ZQQygaDLaXKgAvbSZuMvlZlYwWw5K6a6DT1/lOQ2/wBMsPgWNF0d6gAZRbKlmBK5nN7DQjQHWd6i7vw/pMCrsTC1KoqVcNRqOoGV3po7LY3ABYX3knxJkuMWZV5jgukmMrbTw9WhTc0KjJSICMqMjgB7ub5svzXFh2Nw1nsKtEakAOyFGUWFgBYd1oqE8Ra4BI32PEX4ya0W7X3kigyXhAaafpHj/wBmwlauLXpU3db7swU5R62m3acL8WsX1ezHUGxqvSpjwzBiPRDIry4dNtpuLtjHF+S0h9Elb9K9oHfjMR5OR/ttNFTGkYjvhGzbb2Lb5sXiz/8AdW/Jop2nWPzV658alQ/VprgYQZdmmS9fN812/Eb/AFntPwzo5Nm0zly9Y1WpbuzFQfMKD5zw1msL8tZ9F9G8H1ODoUjvp0qSt+IIM3veNmm0gaPaKRIK5JJIBBj3lIaODOzB4jRopEgKyyIolkDgukKZcU/eQw80Q/wmYWJAXQfbUGbTpecte9hqiN46sv5TmcTj3JGi9nQaH31nT6cdcrcuVAeIM6/4f4XWtWPEpTHkCzfVZwLYtyLEjffdPUug2GKYNGb5qpaofAmy/wClVmb4bxnLpBMTGKXVlXfY/wBAzMmv2jUyWqDh83gN8xHZg7NY1MK7PcPULlwd6kdkKRwICj1M3NLRRON6M7SFStXpl7q71GTwLt+RE7FW0mqyxcV2XvwcZf8AGuq/n6CNVFwGHK/52jYtM6EDfvX8Q1HvK6FRmVCF0a+bW2XT310iC+mQRfnI6giV0hYkctR4GWOwAueGpgClqzHlZR47z+UdlmNsnECpSWoP+Jdx4EnL7WmaZm+VilxFIF7f1r/4jmVMoF24mw47h9JKQUaPeUvofHX3jBplTEzyf42Yr93hqP3nqVD/AIFCj/eZ6szTw34u4rrNoInClSX/ADOzMfbLJVcQIYbSWmdroIZAIbRs0ydl4XrsRSpWv1tSkhHc7hT7Ez6WQTwT4dYXrNp0eVPPVbwVGA/1Ms98WaiUximMTK2MqEkleaSQS8YGBkhAnVgwaG8UQ2lDAx80QCEwOP6bocyOLdpHU/4WB/inKPgmzlM2oF938523TJL0lb7rMvkyn/tnJVqgtn49n0IBnSThyy/swBhgWABJvod2/lPadl4PqaSU8xIp06dMDS10FifE/lPIsCmaoqjfUZQnPOSAJ7RbhMZ8N4GM1u0qeZTmbKoBzEm1hbU+k2LKSNPL+hNDtzA16lJ1QBi6OmXObElSBbNYe8xHVxfRKki17A3HaAPMX0Np6MiWHZPlPH0Sthaqioj02B0uCL/hO4+InpGzsW7KCHJuBowBH6+86Yzux/xjLityzzHwzhGdSdCc6+e8ev1iviCfmFu8aiLUUt8hF8rWP5ewk7dG17VQNSbEiY+Idql6ZXssCG71OlhbnNRtnrCpKqS7AqouQFI46b7nymdspHWmoqOGewzkXAvbhfh+smdmMXHlmYFeqRaYvlQBVvqQo3A8/rNgG87+njMG8ajWy7930nOZb8rplPvlVQxf2pb2LD218fWWMJajHdtB3aetzCHmPiawUheO+AVe4znbJW9Lqr2E+eOmWK63aWJe9wH6seCAJ/CZ7zjMRlVmNgFBY+AF583PUNR3c73ZnPixJ/OTul8LrSQgSCGRUAhIhURiI2ruvhFhr4mtV/8AjprTHi73/wCnPXkaea/C+n1eGqOf+JUsPwoot7s071MUOYjHLH2zcb6X4rEFLaaH6zHbFHip8pjbTq3C9xPruH5ys4gW3znln/LTWOPG1/7T/wArf15STE/aPCSc9xrVb4xCYueKWn09PHtYHkzSoGG8SLterQs0oFSV4rFJTQu7qirvZiFUeJOkaNtR0sb9wbcGT0Jt+c8+6665eVh6C06PpP0jwjUWRK6MxKWC5joGBOoFt15x+z8QjE9scTa+vpNTXhiy726rodUQ42gH+8+X8eRsvvbznrgnz9h9oGlWSohsabq68rqb6909zwmND01YjKXCkryJFyL90znLeW8LrhnwFYik8T6Wjhu+cm2NicDTqIUqIrqd4bUePj3zFp7Hp0xanmUDcLlh76+82maUY7FpRpvVqNZKSM7nkqi5+kstnhdStdVwrqCTlIGt72077zDpVU1brEGUFnuy5Qo3kkGJh8S2KUPUIAcBlT7KA7hf7Td/0jPg0B0A185m9fKeJt0+CfdcttXbOPrO37GoyWYU9NXI7yOzfvtu4TZ9G8XtBxbF4anTFtGDgsTyyDMP9U3tOkOAEZ2cDshTbde/5TjlncuXTHpyLEueIHiY5pc2E1WB2jRxLVKQJSrROWoh0dbi4Yc1PAjSYFTEM18MzslQXZCCQrpzA+o4TMzm5MvC3pWy9raY96Cf3lQDxKj2moxHSnC0lyq1V7fdDAf5mInHbVxIpVClQFWHAg68iD3zW1dpjcq+p/Ib/Wersxk4rzd2W9WOjxPS9rk0kRb8XZnb1P8AOYD9KK5ILu5PAKwRPQAXnOVsWzb+GmgtY+lx4GYrMSdCfHQAj6H6zj2z6b7q3m1Oktc0nXrG1RlIvfRhbXNc8ZwyDSbPaL/u8veAOWnjqJrBJqTwu9jDFvJeBaIbyzDYOrU0RD56TpNkbBVTmrIHP3T8vmNx87zGWUnlZLXZdEKa08FSHFlLn/GxYaeBE39N+QmBgxZFtlUAAAKBoBwEyhVtz855Ledu88MvOZW45zEas3OVtU742aZOVO70kmH1nd7Qxs06FHhzTX08STwMt60cfrPr3q4vB2ZMwNEdxMbr+URqxPEzHz4z6a+K1khz3+ekxdpYelXQ06yI6EglWFxcbj4wF+cUueczl+RfqNToz289q/D1s7t+1IiZ3ZRkZ8tO91BJI1A3mJQ6NbOQ3fF1Xtr2cqjyspPvOq6U18lADM+ao2VQNAUHzX58B5zi9Z16fTuePdldOXU6nbl2yN/hKWyaZB6t3tbVusf2Zre06Zul2HtZUqm27RAP9089WXoTO2PTxntyvVy/TuH6X0/s0H/zAa+QMVum76AU2HA2dT9VnGK0Wo0txx9Ezy9vVMBtGrUppUD6OoazBb67xdbQ4zFNUVqdSmrpUVkdD8pVhYg6cjNN0br5sMn/AC5l9GM3RS6+U8uds8PXjqta1ZqaWpUgMuiKXuLct1wPMyYHa7sLYmnkI3FSWUj00MyUonjCaKzyZZ5b8PTjJryxsT0mwaMqPUtc2+WpYeJAsB3mYu3HxeFdcZhmNagB/wCpw4yk5N/WUja5YDhfUCWY3ZNN9coB5y7ZdB6Clc+ZOCML28DwHdMfJN8t6cx06qK1KltfAPZ6YUhl+1RJ1VxxAO8HvmDtfplhsThaeITsYmkyhwVzBLjtEa3Knmu64vOiTZCU6NelmYpimqO66ZQX+YILdkGc4OgOFO4VANNA7W95Z1cPtLMp/VxuPxmN2jUFVWdnVVRit0WwJIsBbXUx/wCyNoqLsh88rH3E9T2J0bo4dSEQAHeSSST4mbJsAkfNl/zOHPsl83l4iy4hD26bciQpJ8rEQPjQh1psd2pBXu1BvPZnwVPdlHpNbidk02uOqU+0T8j3E+L1XkePxy1AFCkZdfWUUMO9TREJv6T07EdGqOYHq1HOwH1j4fYaJqOG7dYeHOL+Rj9E6VcLhujzn+8a3cASZ0GA6P00sRTv3sdfSdRRwaJ8o37zvJjsluQnHLrZVuYSNZRwIXfYDhuA9BL8ijdMvqxy9ZWzjhac92+W9aZmDbs6CX5WMxsM54fSZJUneZoA0+ZiFlHCRgOd4jPaEPn7oZjftK/eHrDAz1e/EmWA90qUd/pGVp69uOlobvhJlYcRlB4AybXRxAzcteUK028JXiaTZGym7WOUd8S7peI5TEbP2njajJ1SEYdmp6FQqi97E31axGsz6PQHGt8xpL4sT9BGU4vDYpK+Bo1ArqoxdOo4yu40Lrvs1uPcNJ2a7drndg2Hi6D6T6F6muMdPF8e+ctuWT4d1/tYimPBWP6TKT4eH7WKHkn6tOh/tfFHdhU86n6LB/amMP8A7eiPGo5/hmb1cvcX4sfTTp8Pqf2sTU8lQSUeguFqA2rVzYlb9gXty7OomdjtrY4ZaaJQDVSVBvUOUW1Y6cJlYXEYsGzfs4UWFgKl7DvvJ8t9tfFJ9NOuzVwbGijsy6OM1rjNwNvD3mzw73ESphc1R6lQgsx3DcAAAAPIS9QonHLLddpOCt4QMpjs/ISl6pnLLTeOwameJgKLxiM7HjEN+c8uX6dsTVCu6Jm7ofKECYktrW4sQm0Rl5xhJadr4c1ZEQiWm0BYTlY1th16JMx2pqNT5TPqkkTCelzMxVih3AlBYn5VmYEUcBKmfgJNG2K1Jj8zSdWo4estc21JA8Zg1sag3XPsP1mpjb4LlGfTflDVrIou7geJ/Kc5i9sldM4XuW15pcRtUt8oPiZ1x6V+3O5OrxO2UXRFJ7zoJo8ZthmNs9u5Zo3xFR/mY/SV0xOuPTkZuVrNbH+PrJMAwzfbGXrYo8zLFpqOEkkxW4sWw3ARrySSAxgZJIotpsSR3TNDSSTrjeGMhziTrRJJNW1IresPSKKxkkmNr9EdrmG8kkrUAkytpJJzyahbSWkknGtRDCCIJJGhzcoCCZJJplMnOHQQSTIrqNMOsbakySSXyNZXx6DRQT7Ca7E7TYC5Nh3CSSdMcYxbWgxW29+VSe8kzXvjqlQG7W7hpJJO0kZYoW+ssy7/AAkklRKay6hS5ySRVA0hJJJCP//Z">
+                            <div class="poeple-de">
+                                <h5> Oscar Rhys </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBqeA6L2E3ue6vgsE23ZXnDAObKHi0sej08Q&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> George Reece </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd42ycSVCJbFPpAHyCVNcLshWYmeAXorQMiQ&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> Thomas Joe </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjzWH7y03h9JB3pJ3PwTI7WFpz_Lw86r-Auw&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> Charlie Kyle </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRogaKZ2_NFjopmij7GT786vguRWp_anlQznQ&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> Jacob Daniel </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="people">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWssaF7QIUW6xcmirjosL9gJ2iJKtwg65r0Q&usqp=CAU">
+                            <div class="poeple-de">
+                                <h5> Oliver Jack </h5>
+                                <p> john@example.com</p>
+                            </div>
+                        </td>
+                        <td class="people-des">
+                            <h5> Software Engineer </h5>
+                            <p> Web Developement</p>
+                        </td>
+                        <td class="active">
+                            <p> Active </p>
+                        </td>
+                        <td class="role">
+                            <p> Owner </p>
+                        </td>
+                        <td class="edit"><a href="#">Edit</a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+</body>
+</html>

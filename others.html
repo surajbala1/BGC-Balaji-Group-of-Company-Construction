@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'purchase.css'%}">
+    <link rel="stylesheet" href="{%static 'others.css'%}">    
+    <link rel="stylesheet" href="{%static 'contact.css'%}">
+    <title> Operaition Panel | BGC </title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            <i class="fas fa-building"> Other's Good </i>
+            <i class="fas fa-cubes" style="margin-left: 760px;"><a href="http://127.0.0.1:8000/balajigroup/available4" style="text-decoration: none; color: #444a53;"> Available Material </i></a>
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <form action="{% url 'others'%}" method="POST"> <br>
+                    {% csrf_token %}
+                <label for="liquid" class="liquid">Liquid</label>
+                    <select name="liquid" class="liquid1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null--"> ---Null--- </option>
+                        <option value="Water"> Water </option>
+                        <option value="Petrolium"> Petrolium </option>
+                        <option value="Diesel"> Diesel </option>
+                        <option value="Kerosene"> Kerosene </option>
+                    </select>
+
+                    <input type="number" name="liquidquantity" class="quantity1" placeholder="Qty" required>
+
+                    <label for="plastic" class="plastic"> Plastic </label>
+                    <select name="plastic" class="plastic1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---">---Null---</option>
+                        <option value="Surface Pressed Plastic"> Surface Pressed Plastic </option>
+                        <option value="Thick Round 3mm"> Thick Round 3mm </option>
+                        <option value="Hard Moulded Pitch"> Hard Moulded Pitch </option>
+                        <option value="Hammer Setter"> Hammer Setter </option>
+                        <option value="Surface Protector"> Surface Protector </option>
+                    </select>
+
+                    <input type="number" name="plasticquantity" class="quantity2" placeholder="Qty" required> <br><br><br>
+
+                    <label for="barrel" class="barrel"> Barrel </label>
+                    <select name="barrel" class="barrel1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---">---Null---</option>
+                        <option value="Iron Barrel"> Iron Barrel </option>
+                        <option value="Iron Barrel 150mm"> Iron Barrel 150mm </option>
+                        <option value="Iron Barrel 200mm"> Iron Barrel 200mm </option>
+                        <option value="Iron Barrel 250mm"> Iron Barrel 250mm </option>
+                        <option value="Alloy Round Barrel"> Alloy Round Barrel 150mm </option>
+                        <option value="Alloy Round Barrel"> Alloy Round Barrel 200mm </option>
+                        <option value="Alloy Round Barrel"> Alloy Round Barrel 250mm </option>
+                        <option value="Ferrous Metal 150mm"> Ferrous Metal 150mm </option>
+                        <option value="Ferrous Metal 150mm"> Ferrous Metal 200mm </option>
+                        <option value="Ferrous Metal 150mm"> Ferrous Metal 250mm </option>
+                    </select>
+
+                    <input type="number" name="barrelquantity" class="quantity3" placeholder="Qty" required>
+
+                    <label for="supporter" class="supporter"> Quich Supporter </label>
+                    <select name="supporter" class="supporter1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Brick's"> Brick's </option>
+                        <option value="Brick's 30x45"> Brick's 30x45 </option>
+                        <option value="Brick's 35x55"> Brick's 35x55 </option>
+                        <option value="Brick's 42x56"> Brick's 42x56 </option>
+                        <option value="Brick's 45x60"> Brick's 45x60 </option>
+                        <option value="Break Brick's"> Break Brick's </option>
+                        <option value="Wood 120x320">  Wood 120x320 </option>
+                        <option value="Wood 150x370">  Wood 150x370 </option>
+                        <option value="Wood 170x420">  Wood 170x420 </option>
+                        <option value="Wood Piece"> Wood Piece </option>
+                    </select> 
+                    
+                    <input type="number" name="supportquantity" class="quantity4" placeholder="Qty" required><br> <br> <br>
+                    
+                    <label for="wood" class="wood"> Wood </label>
+                    <select name="wood" class="wood1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---">---Null---</option>
+                        <option value="Straight Bamboo"> Straight Bamboo </option>
+                        <option value="Flat Wood"> Flat Wood </option>
+                        <option value="Surface Support Wood"> Surface Support Wood </option>
+                        <option value="Top Support Wood"> Top Support Wood </option>
+                        <option value="Knocking Wood"> Knocking Wood </option>
+                    </select>
+
+                    <input type="number" name="woodquantity" class="quantity5" placeholder="Qty" required>
+
+                    <label for="supplier" class="suppllier"> Supplier </label>
+                    <select name="supplier" class="supplier1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---">---Null---</option>
+                        <option value="Ganesh Wood Furniture Manufacturer & Suppliers"> Ganesh Wood Furniture Manufacturer & Suppliers </option>
+                        <option value="SARK PACK PVT. LTD.">SARK PACK PVT. LTD.</option>
+                        <option value="I. R. Tubes Pvt. Ltd.| Specialty Chemical Suppliers and Distributors">I. R. Tubes Pvt. Ltd.| Specialty Chemical Suppliers and Distributors</option>
+                        <option value="Reliable Trading Company">Reliable Trading Company</option>
+                        <option value="Jai Ganesh Bricks & Suppliers">Jai Ganesh Bricks & Suppliers</option>
+                        <option value="Unity Poly Barrels Pvt Ltd">Unity Poly Barrels Pvt Ltd</option>
+                    </select><br><br><br><br>
+                    
+                    <button type="submit" class="btn" name="btn2" id="submit"> Purchase </button><br><br><br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Waoooooo !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

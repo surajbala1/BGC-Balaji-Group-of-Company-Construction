@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'purchase.css'%}">
+    <link rel="stylesheet" href="{%static 'chemicalized.css'%}">    
+    <link rel="stylesheet" href="{%static 'contact.css'%}">
+    <title> Operaition Panel | BGC </title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            <i class="fas fa-flask"> Chemicalized </i>
+            <i class="fas fa-cubes" style="margin-left: 760px;"><a href="http://127.0.0.1:8000/balajigroup/available3" style="text-decoration: none; color: #444a53;"> Available Material </i></a>
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <form action="{% url 'chemicalized'%}" method="POST"><br>
+                    {% csrf_token %}
+                <label for="cement" class="cement"> Cement's</label>
+                    <select name="cement" class="cement1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Ordinary Portland Cement (OPC)"> Ordinary Portland Cement (OPC) </option>
+                        <option value="White Cement"> White Cement </option>
+                        <option value="Water Repellent Cement"> Water Repellent Cement </option>
+                        <option value="Sulfate Resistant Cement"> Sulfate Resistant Cement </option>
+                        <option value="Low Heat Cement"> Low Heat Cement </option>
+                        <option value="High Alumina Cement"> High Alumina Cement </option>
+                        <option value="Hydraulic Cement"> Hydraulic Cement </option>
+                        <option value="Rapid Hardening Cement"> Rapid Hardening Cement </option>
+                        <option value="Expansive Cement"> Expansive Cement </option>
+                        <option value="Air Entraining Cement"> Air Entraining Cement </option>
+                    </select>
+                    
+                    <label for="product" class="product"> Product Brand </label>
+                    <select name="productbrand" class="product1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="UltraTech Cement">UltraTech Cement </option>
+                        <option value="Ambuja Cement"> Ambuja Cement </option>
+                        <option value="ACC Cement"> ACC Cement </option>
+                        <option value="Shree Cement"> Shree Cement </option>
+                        <option value="Birla Cement"> Birla Cement </option>
+                        <option value="JK Cement"> JK Cement </option>
+                        <option value="Binani Cement"> Binani Cement </option>
+                        <option value="Jaypee Cement"> Jaypee Cement </option>
+                        <option value="Dalmia Cement"> Dalmia Cement </option>
+                        <option value="India Cement"> India Cement </option>
+                    </select>
+                    
+                    <input type="number" name="productquantity" class="quantity1" placeholder="Qty" required> <br><br><br>
+
+                    <label for="Waterproofing" class="Waterproofing">Waterproofing</label>
+                    <select name="waterproofing" class="Waterproofing1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Cementitious Waterproofing">Cementitious Waterproofing </option>
+                        <option value="Bituminous Coating waterproofing"> Bituminous Coating waterproofing </option>
+                        <option value="Bituminous Membrane Waterproofing"> Bituminous Membrane Waterproofing </option>
+                        <option value="Polyurethane Membrane Waterproofing "> Polyurethane Membrane Waterproofing </option>
+                        <option value="Liquid Waterproofing Membrane"> Liquid Waterproofing Membrane </option>
+                    </select>
+
+                    <input type="number" name="waterproofingquantity" class="quantity2" placeholder="Qty" required>
+
+                    <label for="adhesives" class="adhesives"> Adhesives </label>
+                    <select name="adhesives" class="adhesives1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Epoxy Adhesives"> Epoxy Adhesives </option>
+                        <option value="Polyurethane Adhesives"> Polyurethane Adhesives </option>
+                        <option value="Polyimide Adhesives"> Polyimide Adhesives </option>
+                        <option value="Hot Melt Adhesives"> Hot Melt Adhesives </option>
+                        <option value="Acrylic Adhesives"> Acrylic Adhesives </option>
+                        <option value="Epoxy Resin Adhesives"> Epoxy Resin Adhesives </option>
+                        <option value="Pressure Adhesives"> Pressure Adhesives </option>
+                        <option value="Electrically Conductive Adhesives"> Electrically Conductive Adhesives </option>
+                    </select>
+
+                    <input type="number" name="adhesivequantity" class="quantity3" placeholder="Qty" required><br><br><br>
+
+                    <label for="rebar" class="rebar" style="margin-left: 40px;"> Rebar Coating </label>
+                    <select name="rebar" class="rebar1" style="margin-left: 25px;" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Mild Steel Bar"> Mild Steel Bar </option>
+                        <option value="Deformed Steel Bar">  Deformed Steel Bar </option>
+                        <option value="Carbon Steel Rebar"> Carbon Steel Rebar </option>
+                        <option value="Epoxy-Coated Rebar"> Epoxy-Coated Rebar </option>
+                        <option value="Galvanized Rebar"> Galvanized Rebar </option>
+                        <option value="Stainless Steel Rebar"> Stainless Steel Rebar </option>
+                    </select>
+
+                    <input type="number" name="rebarquantity" class="quantity4" placeholder="Qty" required>
+                    
+                    <label for="epoxy" class="epoxy"> Epoxy Grouts </label>
+                    <select name="epoxy" class="epoxy1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Cementitious Grouts"> Cementitious Grouts </option>
+                        <option value="Sanded Grout"> Sanded Grout </option>
+                        <option value="Unsanded Grout"> Unsanded Grout </option>
+                        <option value="Latex modified grout"> Latex modified grout </option>
+                    </select>
+
+                    <input type="number" name="epoxyquantity" class="quantity5" placeholder="Qty" required> <br><br><br>
+
+                    <label for="concrete" class="concrete"> Conc. Curing </label>
+                    <select name="concrete" class="concrete1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Synthetic Resin Compound"> Synthetic Resin Compound </option>
+                        <option value="Acrylic Compound"> Acrylic Compound</option>
+                        <option value="Wax Compound"> Wax Compound </option>
+                        <option value="Chlorinated Rubber Compound"> Chlorinated Rubber Compound</option>
+                    </select>
+
+                    <input type="number" name="concretequantity" class="quantity6" placeholder="Qty" required>
+
+                    <label for="polymer" class="polymer"> Polymer Bonding </label>
+                    <select name="polymer" class="polymer1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Natural Polymers"> Natural Polymers </option>
+                        <option value="Steel Rod Press Machine"> Steel Rod Press Machine </option>
+                        <option value="Synthetic Polymers"> Synthetic Polymers </option>
+                        <option value="Linear Polymers"> Linear Polymers </option>
+                        <option value="Branched-chain Polymers"> Branched-chain Polymers </option>
+                        <option value="Cross-linked Polymers"> Cross-linked Polymers </option>
+                    </select>
+
+                    <input type="number" name="polymerquantity" class="quantity7" placeholder="Qty" required> <br><br><br>
+
+                    <label for="mould" class="mould"> Mould Releasing </label>
+                    <select name="mould" class="mould1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Non-permanent release agents"> Non-permanent release agents </option>
+                        <option value="Barrier release agents"> Barrier release agents </option>
+                        <option value="Reactive release agents"> Reactive release agents </option>
+                        <option value="Semi-permanent release agents"> Semi-permanent release agents </option>
+                    </select>
+
+                    <input type="number" name="mouldquantity" class="quantity8" placeholder="Qty" required>
+
+                    <label for="protective" class="protective"> Protect Coatings </label>
+                    <select name="protective" class="protective1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Epoxies"> Epoxies </option>
+                        <option value="Polyurethanes"> Polyurethanes </option>
+                        <option value="Polysiloxanes"> Polysiloxanes </option>
+                        <option value="Zinc-Rich Primers"> Zinc-Rich Primers </option>
+                    </select>
+
+                    <input type="number" name="protectivequantity" class="quantity9" placeholder="Qty" required> <br><br><br>
+
+                    <label for="floor" class="floor"> Floor Hardeners </label>
+                    <select name="floor" class="floor1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Hardcast Cement Brick Hardener"> Hardcast Cement Brick Hardener </option>
+                        <option value="Powder Cement Concrete Hardener"> Powder Cement Concrete Hardener </option>
+                        <option value="Powder Stamp Concrete Color Hardener"> Powder Stamp Concrete Color Hardener </option>
+                        <option value="Fosroc Liquid Cement Concrete Hardener"> Fosroc Liquid Cement Concrete Hardener </option>
+                        <option value="Lithium Denisfier"> Lithium Denisfier </option>
+                        <option value="Liquid Cement Concrete Hardener"> Liquid Cement Concrete Hardener </option>
+                        <option value="HCC Hardener"> HCC Hardener </option>
+                    </select>
+
+                    <input type="number" name="hardenerquantity" class="quantity10" placeholder="Qty" required>
+
+                    <label for="bond" class="bond"> Bond Air Plaster </label>
+                    <select name="bond" class="bond1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="polymer emulsions"> Polymer Emulsions </option>
+                        <option value="Film Formers"> Film Formers </option>
+                        <option value="Modifiers"> Modifiers </option>
+                        <option value="Preservatives"> Preservatives </option>
+                    </select>
+
+                    <input type="number" name="bondairquantity" class="quantity11" placeholder="Qty" required> <br><br><br>
+                    
+                    <label for="Plaster" class="Plaster"> Ready Use Plast </label>
+                    <select name="bender" class="Plaster1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Lime Plaster"> Lime Plaster </option>
+                        <option value="Cement Plaster"> Cement Plaster </option>
+                        <option value="Gypsum Plaster"> Gypsum Plaster </option>
+                        <option value="Mud Plaster"> Mud Plaster </option>
+                        <option value="Stucco Plaster"> Stucco Plaster </option>
+                        <option value="Cow Dunk Plaster"> Cow Dunk Plaster </option>
+                    </select>
+
+                    <input type="number" name="plasterquantity" class="quantity12" placeholder="Qty" required>
+
+                    <label for="tile" class="tile"> Tile Clad Fixers </label>
+                    <select name="tile" class="tile1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Stone Cladding"> Stone Cladding </option>
+                        <option value="Vinyl Cladding"> Vinyl Cladding </option>
+                        <option value="Brick Cladding"> Brick Cladding </option>
+                        <option value="Fibre Cement Cladding"> Fibre Cement Cladding </option>
+                        <option value="Wooden Cladding"> Wooden Cladding </option>
+                        <option value="Aluminum Cladding"> Aluminum Cladding </option>
+                        <option value="Glass Cladding"> Glass Cladding </option>
+                    </select>
+
+                    <input type="number" name="claddingquantity" class="quantity13" placeholder="Qty" required> <br><br><br>
+                    
+                    <label for="supplier" class="supplier" style="margin-left: 40px; color:#fff; font-size:20px; font-weight: 600;"> Supplier </label>
+                    <select name="supplier" class="supplier1" required style="font-size: 17px; margin-left: 83px; width: 220px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Razon Construction Chemicals"> Razon Construction Chemicals </option>
+                        <option value="KRISHNA COLOURS & CONSTCHEM PVT. LTD."> KRISHNA COLOURS & CONSTCHEM PVT. LTD. </option>
+                        <option value="Globe Construction Chemical Pvt Ltd"> Globe Construction Chemical Pvt Ltd </option>
+                        <option value="Durochem Industries Private Limited"> Durochem Industries Private Limited </option>
+                        <option value="Construction Chemicals Corporation"> Construction Chemicals Corporation </option>
+                        <option value="Patel Construction Chemicals"> Patel Construction Chemicals </option>
+                        <option value="RAZON ENGINEERING COMPANY PRIVATE LIMITED"> RAZON ENGINEERING COMPANY PRIVATE LIMITED </option>
+                        <option value="Catalyst Speciality Chemicals Limited"> Catalyst Speciality Chemicals Limited </option>
+                        <option value="Poona Chemical Ltd."> Poona Chemical Ltd. </option>
+                        <option value="NGP(nagpur) Petro Chemical PVT LIMITED"> NGP(nagpur) Petro Chemical PVT LIMITED </option>
+                        <option value="Kbk Chemical Engineering Private Limited"> Kbk Chemical Engineering Private Limited </option>
+                        <option value="Indian Oxides and Chemicals Ltd."> Indian Oxides and Chemicals Ltd. </option>
+                        <option value="Build Core Chemicals - Construction Chemicals Manufacturer"> Build Core Chemicals - Construction Chemicals Manufacturer </option>
+                        <option value="Deccan Mechanical & Chemical Industries Pvt Ltd (DEMECH) - Head Office"> Deccan Mechanical & Chemical Industries Pvt Ltd (DEMECH) - Head Office </option>
+                        <option value="SYNTURAL chemicals"> SYNTURAL chemicals </option>
+                        <option value="Rajit Chemical"> Rajit Chemical </option>
+                        <option value="SVS Chemical Corporation"> SVS Chemical Corporation </option>
+                        <option value="Chemicals Private Limited">Chemicals Private Limited </option>
+                        <option value="KRISHNA CONCHEM PRODUCTS PVT LTD"> KRISHNA CONCHEM PRODUCTS PVT LTD </option>
+                        <option value="RAJESH INFRASTRUCTURE PRIVATE LTD"> RAJESH INFRASTRUCTURE PRIVATE LTD </option>
+                        <option value="Construction Chemical (Add Chem Industries)"> Construction Chemical (Add Chem Industries) </option>
+                        <option value="Shibam Ventures & Building Materials (P) Ltd GAF Roofing Shingles India"> Shibam Ventures & Building Materials (P) Ltd GAF Roofing Shingles India </option>
+                        <option value="Poona Chemical Ltd.D. Haridas & Co (A Unit of Advance Labs Scientific Pvt. Ltd.)"> Poona Chemical Ltd.D. Haridas & Co (A Unit of Advance Labs Scientific Pvt. Ltd.) </option>
+                    </select>
+                    <button type="submit" class="btn" name="btn2" id="submit" style="margin-left: 100px;"> Purchase </button><br><br><br>
+                    <br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Waoooooo !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

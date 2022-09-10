@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <title>HR Login | BGC</title>
+    <script>
+        function OpenIt(){
+            const url= 'http://127.0.0.1:8000/balajigroup/help';
+            window.open(url);
+        }
+    </script>
+</head>
+<body style="background-color:#0a3e72">
+    <div class="mydiv" style="border: 1px outset white; background-color: #0a3e72; width:460px; height:140px; margin-left:550px; margin-top: 250px;"> <br>
+        <form action="{% url 'hr'%}" method="POST">
+            {%csrf_token%}
+        <label for="username" style="color: #fff; font-family: 'Times New Roman', Times, serif; font-size: 15px; margin-left: 20px;;"> User Name </label>
+        <input type="text" class="username" name="username" id="username" style="margin-left: 90px; width: 220px; border-radius: 4px;" placeholder="---Login Name---" required> <br> <br>
+        <label for="password" style="color: #fff; font-size: 15px; font-family: 'Times New Roman', Times, serif;margin-left: 20px;"> Password </label>
+        <input type="password" class="password" name="password" id="password" style="margin-left: 100px; width: 220px; border-radius: 4px;" placeholder="---Password---" required> <br> <br>
+        <button type="submit" class="btn" name="btn" id="bt" style="margin-left: 183px;"> Enter </a></button>
+        <button onclick="OpenIt()" style="margin-left: 20px;"> Need Help ? </button>
+        </form>
+    </div>
+    <div style="color: #fff; margin-top: -360px; text-align:center;">
+        {% for message in messages%}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'purchase.css'%}">
+    <link rel="stylesheet" href="{%static 'metalsgood.css'%}">    
+    <link rel="stylesheet" href="{%static 'contact.css'%}">
+    <title> Operaition Panel | BGC </title>
+</head>
+<body onload="myFunction()">
+    <script>
+        function myFunction() {
+            alert("Before place order please check carefully all the related field's, because data are pre-seted");
+        }
+        </script>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            <i class="fas fa-hat-cowboy"> Metals Good </i>
+            <i class="fas fa-cubes" style="margin-left: 760px;"><a href="http://127.0.0.1:8000/balajigroup/available2" style="text-decoration: none; color: #444a53;"> Available Material </i></a>
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <form action="{% url 'metalsgood'%}" method="POST"> <br><br> <br>
+                    {% csrf_token %}
+                <label for="steel rod" class="area1">Steel Rod</label>
+                    <select name="steelrod" class="area" required style="margin-left: 30px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Mild Steel Plain Bars"> Mild Steel Plain Bars </option>
+                        <option value=" Hot Rolled Deformed Bars">  Hot Rolled Deformed Bars </option>
+                        <option value="TMT Steel"> TMT Steel </option>
+                        <option value="Cold Worked Steel Bars"> Cold Worked Steel Bars </option>
+                        <option value="Prestressing Steel Bars"> Prestressing Steel Bars </option>
+                        <option value="Twisted Steel Bars"> Twisted Steel Bars </option>
+                    </select>
+                    <input type="number" name="rodquantity" class="quantity1" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required>
+
+                    <label for="rodsize" class="rodsize" style="margin-left: 250px;">Rod Size</label>
+                    <select name="rodsize" class="rodsize1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Mild Steel Plain Bars 6mm "> Mild Steel Plain Bars 6mm </option>
+                        <option value="Mild Steel Plain Bars 8mm "> Mild Steel Plain Bars 8mm </option>
+                        <option value="Mild Steel Plain Bars 10mm"> Mild Steel Plain Bars 10mm </option>
+                        <option value="Mild Steel Plain Bars 12mm"> Mild Steel Plain Bars 12mm </option>
+                        <option value="Mild Steel Plain Bars 16mm"> Mild Steel Plain Bars 16mm </option>
+                        <option value="Mild Steel Plain Bars 20mm"> Mild Steel Plain Bars 20mm </option>
+                        <option value="Mild Steel Plain Bars 25mm"> Mild Steel Plain Bars 25mm </option>
+                        <option value=" Hot Rolled Deformed Bars 6mm">  Hot Rolled Deformed Bars 6mm</option>
+                        <option value=" Hot Rolled Deformed Bars 8mm">  Hot Rolled Deformed Bars 8mm</option>
+                        <option value=" Hot Rolled Deformed Bars 10mm">  Hot Rolled Deformed Bars 10mm</option>
+                        <option value=" Hot Rolled Deformed Bars 12mm">  Hot Rolled Deformed Bars 12mm</option>
+                        <option value=" Hot Rolled Deformed Bars 16mm">  Hot Rolled Deformed Bars 16mm</option>
+                        <option value=" Hot Rolled Deformed Bars 16mm">  Hot Rolled Deformed Bars 16mm</option>
+                        <option value=" Hot Rolled Deformed Bars 20mm">  Hot Rolled Deformed Bars 20mm</option>
+                        <option value=" Hot Rolled Deformed Bars 25mm">  Hmot Rolled Deformed Bars 25mm</option>
+                        <option value="TMT Steel 6mm"> TMT Steel 6mm </opmtion>
+                        <option value="TMT Steel 8mm"> TMT Steel 8mm </opmtion>
+                        <option value="TMT Steel 10mm"> TMT Steel 10mm</option>
+                        <option value="TMT Steel 12mm"> TMT Steel 12mm</option>
+                        <option value="TMT Steel 16mm"> TMT Steel 16mm</option>
+                        <option value="TMT Steel 20mm"> TMT Steel 20mm</option>
+                        <option value="TMT Steel 25mm"> TMT Steel 25mm</option>
+                        <option value="Cold Worked Steel Bars 6mm "> Cold Worked Steel Bars 6mm </option>
+                        <option value="Cold Worked Steel Bars 8mm "> Cold Worked Steel Bars 8mm </option>
+                        <option value="Cold Worked Steel Bars 10mm"> Cold Worked Steel Bars 10mm</option>
+                        <option value="Cold Worked Steel Bars 12mm"> Cold Worked Steel Bars 12mm</option>
+                        <option value="Cold Worked Steel Bars 16mm"> Cold Worked Steel Bars 16mm</option>
+                        <option value="Cold Worked Steel Bars 20mm"> Cold Worked Steel Bars 20mm</option>
+                        <option value="Cold Worked Steel Bars 25mm"> Cold Worked Steel Bars 25mm</option>
+                        <option value="Prestressing Steel Bars 6mm "> Prestressing Steel Bars 6mm </option>
+                        <option value="Prestressing Steel Bars 8mm "> Prestressing Steel Bars 8mm </option>
+                        <option value="Prestressing Steel Bars 10mm"> Prestressing Steel Bars 10mm</option>
+                        <option value="Prestressing Steel Bars 12mm"> Prestressing Steel Bars 12mm</option>
+                        <option value="Prestressing Steel Bars 16mm"> Prestressing Steel Bars 16mm</option>
+                        <option value="Prestressing Steel Bars 20mm"> Prestressing Steel Bars 20mm</option>
+                        <option value="Prestressing Steel Bars 25mm"> Prestressing Steel Bars 25mm</option>
+                        <option value="Twisted Steel Bars 6mm "> Twisted Steel Bars 6mm </option>
+                        <option value="Twisted Steel Bars 8mm "> Twisted Steel Bars 8mm </option>
+                        <option value="Twisted Steel Bars 10mm"> Twisted Steel Bars 10mm</option>
+                        <option value="Twisted Steel Bars 12mm"> Twisted Steel Bars 12mm</option>
+                        <option value="Twisted Steel Bars 16mm"> Twisted Steel Bars 16mm</option>
+                        <option value="Twisted Steel Bars 20mm"> Twisted Steel Bars 20mm</option>
+                        <option value="Twisted Steel Bars 25mm"> Twisted Steel Bars 25mm</option>
+                    </select>
+
+                    <input type="number" name="rodsizequantity" class="quantity2" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required> <br><br><br>
+
+                    <label for="nail" class="nail"> Nail </label>
+                    <select name="nail" class="nail1" required style="margin-left: 70px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Box Nails"> Box Nails </option>
+                        <option value="Brad Nails"> Brad Nails </option>
+                        <option value="Finishing Nails"> Finishing Nails </option>
+                        <option value="Drywall Nails"> Drywall Nails </option>
+                        <option value="Flooring Nails"> Flooring Nails </option>
+                        <option value="Framing Nails"> Framing Nails </option>
+                        <option value="Roofing Nails"> Roofing Nails </option>
+                        <option value="Duplex Nails"> Duplex Nails </option>
+                        <option value="Masonry Nails"> Masonry Nails </option>
+                    </select>
+
+                    <input type="number" name="nailquantity" class="quantity3" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required>
+
+                    <label for="hammer" class="hammer" style="margin-left: 254px;"> Hammer </label>
+                    <select name="hammer" class="hammer1" required style="width: 218px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Claw Hammer"> Claw Hammer </option>
+                        <option value="Cross Peen Pin Hammer">  Cross Peen Pin Hammer </option>
+                        <option value="Sledge Hammer"> Sledge Hammer </option>
+                        <option value="BallPeen  Hammer"> BallPeen  Hammer </option>
+                        <option value="Rubber Hammer"> Rubber Hammer </option>
+                        <option value="Tack Hammer"> Tack Hammer </option>
+                        <option value="Dead Blow Hammer"> Dead Blow Hammer </option>
+                        <option value="Knife Edge Hammer"> Knife Edge Hammer </option>
+                        <option value="Brick Hammer"> Brick Hammer </option>
+                        <option value="Framing Hammer"> Framing Hammer </option>
+                        <option value="Drywall Hammer"> Drywall Hammer </option>
+                        <option value="Body Mechanic Hammer">  Body Mechanic Hammer </option>
+                        <option value="Planishing Hammer"> Planishing Hammer </option>
+                        <option value="Prospectors Hammer"> Prospectors Hammer </option>
+                        <option value="Power Hammer"> Power Hammer </option>
+                        <option value="Splitting Maul Hammer"> Splitting Maul Hammer </option>
+                        <option value="Straight Peen Hammer"> Straight Peen Hammer </option>
+                        <option value="Welder’s Hammer"> Welder’s Hammer </option>
+                        <option value="Soft Faced Hammer"> Soft Faced Hammer </option>
+                        <option value="Half Hatchet Hammer"> Half Hatchet Hammer </option>
+                        <option value="Blocking Hammer"> Blocking Hammer </option>
+                        <option value="Bushing Hammer"> Bushing Hammer </option>
+                        <option value="Brass Hammer"> Brass Hammer </option>
+                    </select>
+                    
+                    <input type="number" name="hammerquantity" class="quantity4" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required> <br><br><br>
+
+                    <label for="cutter" class="cutter"> Cutter </label>
+                    <select name="cutter" class="cutter1" required style="margin-left: 50px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Plain Milling Cutter"> Plain Milling Cutter </option>
+                        <option value="Side Milling Cutter"> Side Milling Cutter </option>
+                        <option value="End Mill Cutters"> End Mill Cutters </option>
+                        <option value="Metal Slitting Saw Cutters"> Metal Slitting Saw Cutters </option>
+                        <option value="Plain Metal-Slitting Cutters"> Plain Metal-Slitting Cutters </option>
+                        <option value="Staggered-Teeth Milling Cutters"> Staggered-Teeth Milling Cutters </option>
+                        <option value="Side Teeth Slitting Cutters"> Side Teeth Slitting Cutters </option>
+                        <option value="Angle Milling Cutters"> Angle Milling Cutters </option>
+                        <option value="Concave Milling Cutter"> Concave Milling Cutter </option>
+                        <option value="Cylindrical Milling Cutter"> Cylindrical Milling Cutter </option>
+                        <option value="T-Slot Cutters"> T-Slot Cutters </option>
+                        <option value="Form Milling Cutters"> Form Milling Cutters </option>
+                        <option value="Form Cutters"> Form Cutters </option>
+                        <option value="Shaped or Form Profile Cutters"> Shaped or Form Profile Cutters </option>
+                        <option value="Form or Cam-Relieved Cutters"> Form or Cam-Relieved Cutters </option>
+                        <option value="Fly Cutters"> Fly Cutters </option>
+                        <option value=" Inserted Tooth Milling Cutters">  Inserted Tooth Milling Cutters </option>
+                    </select>
+
+                    <input type="number" name="cutterquantity" class="quantity5" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required>
+
+                    <label for="blade" class="blade" style="margin-left: 258px;"> Blade </label>
+                    <select name="blade" class="blade1" required style="width: 216px;">
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Circular Saw Blades"> Circular Saw Blades </option>
+                        <option value="Handsaw Blades"> Handsaw Blades</option>
+                        <option value="Bandsaw Blades"> Bandsaw Blades </option>
+                        <option value="Reciprocating and Jig Saw Blades"> Reciprocating and Jig Saw Blades</option>
+                        <option value="Rim Blades"> Rim Blades</option>
+                        <option value="Turbo-Rim Blades"> Turbo-Rim Blades</option>
+                        <option value="Segmented Blades"> Segmented Blades</option>
+                        <option value="Abrasive Blades"> Abrasive Blades</option>
+                        <option value="Stacked Dado Blades"> Stacked Dado Blades</option>
+                    </select>
+
+                    <input type="number" name="bladequantity" class="quantity6" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required> <br><br><br>
+
+                    <label for="machine" class="machine"> Machine </label>
+                    <select name="machine" class="machine1" required style="margin-left: 34px;">
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Steel Rod Cutting Machine"> Steel Rod Cutting Machine </option>
+                        <option value="Steel Rod Press Machine"> Steel Rod Press Machine </option>
+                        <option value="Excavators"> Excavators </option>
+                        <option value="Dragline Excavator"> Dragline Excavator </option>
+                        <option value="Graders"> Graders </option>
+                        <option value="Wheel Tractor Scraper"> Wheel Tractor Scraper </option>
+                        <option value="Trenchers"> Trenchers </option>
+                        <option value="Loaders"> Loaders </option>
+                        <option value="Tower Cranes"> Tower Cranes </option>
+                        <option value="Pavers"> Pavers </option>
+                        <option value="Compactors"> Compactors </option>
+                        <option value="Telehandlers"> Telehandlers </option>
+                        <option value="Feller Bunchers"> Feller Bunchers </option>
+                        <option value="Dump Trucks"> Dump Trucks </option>
+                        <option value="Pile Boring Machine"> Pile Boring Machine </option>
+                        <option value="Pile Driving Machine"> Pile Driving Machine </option>
+                    </select>
+
+                    <input type="number" name="machinequantity" class="quantity7" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required>
+
+                    <label for="carrier" class="carrier" style="margin-left:260px;"> Carrier </label>
+                    <select name="carrier" class="carrier1" required style="width: 215px;">
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="---Null---"> ---Null---
+                        <option value="Raw Material"> Raw Material </option>
+                        <option value="RMC (Ready MixConcrete)"> RMC (Ready MixConcrete) </option>
+                        <option value="Brick"> Brick </option>
+                        <option value="Ballast"> Ballast </option>
+                    </select>
+
+                    <input type="number" name="carrierquantity" class="quantity8" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required> <br><br><br>
+
+                    <label for="Rod Tier" class="rodtier"> Rod Tier </label>
+                    <select name="rodtier" class="rodtier1" required style="margin-left: 33px;">
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="0.12mm"> 0.12mm </option>
+                        <option value="0.24mm"> 0.24mm </option>
+                        <option value="0.32mm"> 0.32mm </option>
+                        <option value="0.38mm"> 0.38mm </option>
+                        <option value="0.42mm"> 0.42mm </option>
+                        <option value="0.48mm"> 0.48mm </option>
+                        <option value="0.52mm"> 0.52mm </option>
+                        <option value="0.54mm"> 0.54mm </option>
+                    </select>
+
+                    <input type="number" name="rodtierquantity" class="quantity9" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required>
+                    
+                    <label for="bender" class="bender" style="margin-left:263px;"> Bender </label>
+                    <select name="bender" class="bender1" required style="width: 214px;">
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Tier Bender"> Tier Bender </option>
+                        <option value="Plastic Bender"> Plastic Bender </option>
+                        <option value="Rod Bender"> Rod Bender </option>
+                        <option value="Sack Bender"> Sack Bender </option>
+                    </select>
+
+                    <input type="number" name="benderquantity" class="quantity10" placeholder="Qty" style="font-size: 17px; margin-left: 10px; width: 50px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;" required> <br><br><br>
+                    
+                    <label for="bender" class="supplier" style="margin-left: 40px; color: #fff; font-size: 20px;"> Supplier </label>
+                    <select name="supplier" class="supplier11" required style="font-size: 17px; margin-left: 35px; width: 218px; font-family: 'Times New Roman', Times, serif; border-radius: 3px;">
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="---Null---"> ---Null--- </option>
+                        <option value="Sai Marketing"> Sai Marketing </option>
+                        <option value="Nitoda Steels"> Nitoda Steels </option>
+                        <option value="S P Traders"> S P Traders </option>
+                        <option value="Bhide Group"> Bhide Group </option>
+                        <option value="Saundarya Stone Industries"> Saundarya Stone Industries </option>
+                        <option value="Ashoka Developers And Builders Ltd"> Ashoka Developers And Builders Ltd </option>
+                        <option value="Mamata Agency"> Mamata Agency </option>
+                        <option value="D Pratap"> D Pratap </option>
+                        <option value="Swastik Enterprises"> Swastik Enterprises </option>
+                        <option value="Jhamtani & Co"> Jhamtani & Co </option>
+                        <option value="Shinde Stone Co"> Shinde Stone Co </option>
+                        <option value="Kalpa Sheet Enterprises"> Kalpa Sheet Enterprises </option>
+                        <option value="Sapphire Sales Corporation"> Sapphire Sales Corporation </option>
+                        <option value="D S Ranawat Buildmat Private Limited"> D S Ranawat Buildmat Private Limited </option>
+                        <option value="Champion Dealers Private Limited"> Champion Dealers Private Limited </option>
+                        <option value="V T Palresha & Co Private Limited"> V T Palresha & Co Private Limited </option>
+                        <option value="K Mahender Traders"> K Mahender Traders </option>
+                        <option value="Shree Ramaraman Agency"> Shree Ramaraman Agency </option>
+                        <option value="S B Cement Works"> S B Cement Works </option>
+                        <option value="Esteem Pallets"> Esteem Pallets </option>
+                        <option value="United Properties"> United Properties </option>
+                        <option value="Shreegi Trading Co"> Shreegi Trading Co </option>
+                    </select>
+                    
+                    <button type="submit" class="btn" name="btn2" id="submit" style="margin-left: 150px;"> Purchase </button><br><br><br>
+                    <h3 style="color:rgb(6, 16, 124); letter-spacing: 1px;"><marquee>Before place order please check carefully all the related field's, because data are pre-seted</marquee></h3>
+                    <br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Waoooooo !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

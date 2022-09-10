@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'storation.css'%}">
+    <title> Operaition Panel | BGC </title>
+<style>
+    th,td{
+        border: 1px black solid;
+    }
+</style>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Storations Panel
+        </h3> <br><br>
+
+        <div class="purchase" style="display: flex;">
+            <div class="raw" style="width: 220px; height:90px; background-color:#fff; margin-left: 35px; border-radius: 5px;">
+                <i class="fas fas fas fa-warehouse" style="font-size: 25px; margin-top: 30px; text-align:center; margin-left: 10px;"><a href="http://127.0.0.1:8000/balajigroup/othersgoodstorations" style="text-decoration: none;"> Other's Good </i></a>
+            </div>
+            <p style="margin-top: 37px; font-size: 19px; color: red;"><marquee><i class="fas fas fas fa-exclamation-triangle"></i> <b style="color: black;">Material should be store in empty pallet, so that material carrier may find that particular within time for production </marquee></p>
+        </div>
+        <form action= "{% url 'othersgoodupdate' %}" method="POST">
+            {% csrf_token %}
+        <div class="board">
+            {% if stu %}
+            
+            <table width="100%">
+                <thead>
+                    
+                    <tr style="background-color:#2849a3; color: #fff; font-family: 'Times New Roman', Times, serif;">
+                        <th> Id </th>
+                        <th> Liquid </th>
+                        <th> Qty</th>
+                        <th> Plastic</th>
+                        <th> Qty </th>
+                        <th> Barrel </th>
+                        <th> Qty </th>
+                        <th> Quick Supporter </th>
+                        <th> Qty </th>
+                        <th> Wood </th>
+                        <th> Qty </th>
+                        <th> Supplier </th>
+                        <th> Location </th>
+                    </tr>
+                        
+                    <tr>
+                        <td><input type="number" name="id" value="{{stu.id}}" style="width: 50px; border-radius: 3px; font-weight:600; text-align: center;" required></td>
+                        <td><input type="text" name="liquid" value="{{stu.liquid}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="number" name="liquidquantity" value="{{stu.liquidquantity}}" style="width: 50px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="text" name="plastic" value="{{stu.plastic}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="number" name="plasticquantity" value="{{stu.plasticquantity}}" style="width: 50px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="text" name="barrel" value="{{stu.barrel}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="number" name="barrelquantity" value="{{stu.barrelquantity}}" style="width: 50px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="text" name="supporter" value="{{stu.supporter}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="number" name="supportquantity" value="{{stu.supportquantity}}" style="width: 50px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="text" name="wood" value="{{stu.wood}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="number" name="woodquantity" value="{{stu.woodquantity}}" style="width: 50px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><input type="text" name="supplier" value="{{stu.supplier}}" style="width: 100px; border-radius: 3px; font-weight: 600; text-align: center;" required></td>
+                        <td><select name="store" class="store" id="store" style="width: 90px; border-radius: 3px; font-weight: 600; text-align: center;" required>
+                            <option value="RM-A1-Up">RM-A1-Up</option>
+                            <option value="RM-A2-Up">RM-A2-Up</option>
+                            <option value="RM-A3-Up">RM-A3-Up</option>
+                            <option value="RM-A4-Up">RM-A4-Up</option>
+                            <option value="RM-A1-Middle">RM-A1-Middle</option>
+                            <option value="RM-A2-Middle">RM-A2-Middle</option>
+                            <option value="RM-A3-Middle">RM-A3-Middle</option>
+                            <option value="RM-A4-Middle">RM-A4-Middle</option>
+                            <option value="RM-A1-Floor">RM-A1-Floor</option>
+                            <option value="RM-A2-Floor">RM-A2-Floor</option>
+                            <option value="RM-A3-Floor">RM-A3-Floor</option>
+                            <option value="RM-A4-Floor">RM-A4-Floor</option>
+                            <option value="MG-A2-Up">MG-A2-Up</option>
+                            <option value="MG-A2-Up">MG-A2-Up</option>
+                            <option value="MG-A3-Up">MG-A3-Up</option>
+                            <option value="MG-A4-Up">MG-A4-Up</option>
+                            <option value="MG-A1-Middle">MG-A1-Middle</option>
+                            <option value="MG-A2-Middle">MG-A2-Middle</option>
+                            <option value="MG-A3-Middle">MG-A3-Middle</option>
+                            <option value="MG-A4-Middle">MG-A4-Middle</option>
+                            <option value="MG-A1-Floor">MG-A1-Floor</option>
+                            <option value="MG-A2-Floor">MG-A2-Floor</option>
+                            <option value="MG-A3-Floor">MG-A3-Floor</option>
+                            <option value="MG-A4-Floor">MG-A4-Floor</option>
+                            <option value="CM-A1-Up">CM-A1-Up</option>
+                            <option value="CM-A2-Up">CM-A2-Up</option>
+                            <option value="CM-A3-Up">CM-A3-Up</option>
+                            <option value="CM-A4-Up">CM-A4-Up</option>
+                            <option value="CM-A1-Middle">CM-A1-Middle</option>
+                            <option value="CM-A2-Middle">CM-A2-Middle</option>
+                            <option value="CM-A3-Middle">CM-A3-Middle</option>
+                            <option value="CM-A4-Middle">CM-A4-Middle</option>
+                            <option value="CM-A1-Floor">CM-A1-Floor</option>
+                            <option value="CM-A2-Floor">CM-A2-Floor</option>
+                            <option value="CM-A3-Floor">CM-A3-Floor</option>
+                            <option value="CM-A4-Floor">CM-A4-Floor</option>
+                            <option value="OG-A1-Up">OG-A1-Up</option>
+                            <option value="OG-A2-Up">OG-A2-Up</option>
+                            <option value="OG-A3-Up">OG-A3-Up</option>
+                            <option value="OG-A4-Up">OG-A4-Up</option>
+                            <option value="OG-A1-Middle">OG-A1-Middle</option>
+                            <option value="OG-A2-Middle">OG-A2-Middle</option>
+                            <option value="OG-A3-Middle">OG-A3-Middle</option>
+                            <option value="OG-A4-Middle">OG-A4-Middle</option>
+                            <option value="OG-A1-Floor">OG-A1-Floor</option>
+                            <option value="OG-A2-Floor">OG-A2-Floor</option>
+                            <option value="OG-A3-Floor">OG-A3-Floor</option>
+                            <option value="OG-A4-Floor">OG-A4-Floor</option>
+                        </select>
+                        </td>
+
+                    </tr>
+                </thead>    
+            </table>
+                        {% endif %}
+        </div>
+        <button type="submit" name="store" id="store" class="store" style="color: #fff; background-color:#2849a3; font-size:25px; border-radius: 4px; margin-left: 50%;"> Store In</button>
+        </form> <br>
+        <p style="margin-top: 37px; font-size: 19px; color: red;"><marquee> <i class="fas fas fas fa-exclamation-triangle"></i> <b style="color: black;">Please do not modify pre-set data, if not necessary </marquee></p>
+        
+    </section>
+</body>
+</html>

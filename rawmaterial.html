@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'purchase.css'%}">
+    <link rel="stylesheet" href="{%static 'rawmaterial.css'%}">    
+    <link rel="stylesheet" href="{%static 'contact.css'%}">
+    <title> Operaition Panel | BGC </title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            <i class="fas fa-warehouse"> Raw Material </i>
+            <i class="fas fa-cubes" style="margin-left: 760px;"><a href="http://127.0.0.1:8000/balajigroup/available1" style="text-decoration: none; color: #444a53;"> Available Material </i></a>
+        </h3>
+        <div class="values">
+            <div class="val-box" style="background-image: url('https://assets.siemens-energy.com/siemens/assets/api/uuid:f059c569-9bc7-4385-9c1c-c8d65c90d47b/width:1125/quality:high/haruoni-keyvisual-se-withextraspace.jpg'); width: 100%; height: 20%;">
+                <form action="{% url 'rawmaterial'%}" method="POST"> <br><br> <br>
+                    {% csrf_token %}
+                <label for="area" class="area1">Select Sand</label>
+                    <select name="sand" class="area" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Pit Sand"> Pit Sand </option>
+                        <option value="River Sand"> River Sand </option>
+                        <option value="Natural Sand"> Natural Sand </option>
+                        <option value="Crushed Stone Sand"> Crushed Stone Sand </option>
+                        <option value="Masonry Sand"> Masonry Sand </option>
+                        <option value="Concrete Sand"> Concrete Sand </option>
+                        <option value="Fill Sand"> Fill Sand </option>
+                        <option value="Industrial Sand"> Industrial Sand </option>
+                        <option value="Utility Sand"> Fine Crushed Limestone </option>
+                    </select>
+
+                    <label for="area" class="delivery"> Purchase Date & Time </label>
+                    <input type="datetime-local" name="purchasedate" class="deliverydate" required> <br><br> <br>
+
+                    <label for="quantity" class="quantity"> Set Quantity </label>
+                    <input type="number" class="quantity1" name="quantity" placeholder="Quantity In Ton's" required>
+                    
+                    <label for="delivery" class="deliveryfor"> Supplier Name (Trade *)</label>
+                    <select name="suppliername" class="deliveryfor1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Sudhir River Contract"> Sudhir River Contract </option>
+                        <option value="Lalwani Sand Supplier"> Lalwani Sand Supplier </option>
+                        <option value="Anthony Plant Material Supplier"> Anthony Plant Material Supplier </option>
+                        <option value="Rewatkar Sand Supplier"> Rewatkar Sand Supplier </option>
+                        <option value="Sardar Khalsa River Material Supplier"> Sardar Khalsa River Material Supplier </option>
+                        <option value="Mandal Raw Material Provider"> Mandal Raw Material Provider </option>
+                        <option value="Sudarshan South Construction"> Sudarshan South Construction </option>
+                        <option value="Dashendra Dependent Builder"> Dashendra Dependent Builder </option>
+                        <option value="Mistry Material Supplier"> Mistry Material Supplier </option>
+                        <option value="Goldar Raw Material Supplier"> Goldar Raw Material Supplier </option>
+                        <option value="Chatursingh Builder"> Chatursingh Builder</option>
+                        <option value="Thomas Material Supplier"> Thomas Material Supplier </option>
+                        <option value="Eknath Sinde Group Raw Material Supplier"> Eknath Sinde Group Raw Material Supplier </option>
+                        <option value="Bhujwal Bandhu River Contractor & Material Supplier"> Bhujwal Bandhu River Contractor & Material Supplier </option>
+                        <option value="Gawande Patil Building Material Supplier"> Gawande Patil Building Material Supplier </option>
+                        <option value="Roy Group Of Construction & Material Supplier"> Roy Group Of Construction & Material Supplier </option>
+                        <option value="Malik Shaba Construction & Material Supplier"> Malik Shaba Construction & Material Supplier </option>
+                        <option value="Akash Group Of Company (Raw Material Supplier)"> Akash Group Of Company (Raw Material Supplier) </option>
+                        <option value="Vrindavan Nanda Shukla Material Supplier"> Vrindavan Nanda Shukla Material Supplier </option>
+                        <option value="Venkateshwara Raw Material Supplier"> Venkateshwara Raw Material Supplier </option>
+                        <option value="Annaswami Sand And Metal Supplier"> Annaswami Sand And Metal Supplier </option>
+                        <option value="Ludhiyana & Punjab Raw Material Supplier"> Ludhiyana & Punjab Raw Material Supplier </option>
+                        <option value="Nagpur Rual Infrastructure Developer"> Nagpur Rual Infrastructure Developer</option>
+                        <option value="Gondia Metro Development Corporation"> Gondia Metro Development Corporation </option>
+                        <option value="Bhandara Town Developer"> Bhandara Town Developer </option>
+                        <option value="Sarkar Rural & Metro Developer"> Sarkar Rural & Metro Developer </option>
+
+                    </select> <br><br> <br>
+
+                    <label for="areawork" class="areawork"> Delivery At </label>
+                    <select name="deliveryat" class="areawork1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Nagpur Sub Office"> Nagpur Sub Office </option>
+                        <option value="Nagpur Main Office"> Nagpur Main Office </option>
+                        <option value="Gondia Rural Submarin"> Gondia Rural Submarin </option>
+                        <option value="Bhandara Sub Office"> Bhandara Sub Office</option>
+                        <option value="Nagpur MIDC"> Nagpur MIDC</option>
+                        <option value="Pune Sub-1 (Pimpri)"> Pune Sub-1 (Pimpri)</option>
+                        <option value="Pune Sub-2 (PMC)"> Pune Sub-2 (PMC)</option>
+                        <option value="Mumbai Main Office"> Mumbai Main Office</option>
+                        <option value="Mumbai Herbal Translink"> Mumbai Herbal Translink</option>
+                        <option value="Delhi Okhla"> Delhi Okhla</option>
+                        <option value="Delhi South"> Delhi South</option>
+                        <option value="Punjab & Haryana"> Punjab & Haryana</option>
+                        <option value="Gurgaon DLF"> Gurgaon DLF</option>
+                    </select>
+
+                    <label for="priority" class="priority"> Set Priority </label>
+                    <select name="priority" class="priority1" required>
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="Normal"> Normal </option>
+                        <option value="Urgent"> Urgent </option>
+                        <option value="Priority"> Priority </option>
+                        <option value="High Priority"> High Priority </option>
+                    </select> <br> <br> <br>
+                    
+                    <button type="submit" class="btn" name="btn2" id="submit"> Purchase </button>
+
+                    <label for="area" class="delivery1"> Delivery Date & Time </label>
+                    <input type="datetime-local" name="deliverydate" class="deliverydate1" required> <br><br> <br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Waoooooo !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>

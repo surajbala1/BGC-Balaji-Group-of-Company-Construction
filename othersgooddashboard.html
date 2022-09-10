@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'operationpanel.css'%}">
+    <title> Operaition Panel | BGC </title>
+<style>
+    th,td{
+        border: 1px black solid;
+    }
+</style>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Purchased Dashboard
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <i class="fas fas fa-user-secret"></i>
+                <div>
+                    <a href="http://127.0.0.1:8000/balajigroup/targetdashboard"> Create Target</a>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-money-bill"></i>
+                <div>
+                    <a href="http://127.0.0.1:8000/balajigroup/purchasedashboard">Purchase Raw </a>
+
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-store-alt"></i>
+                <div>
+                    <a href="http://127.0.0.1:8000/balajigroup/storationdashboard">Storation</a>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-recycle"></i>
+                <div>
+                    <a href="http://127.0.0.1:8000/balajigroup/productiondashboard">Production</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="raw" style="margin-left: 160px; margin-top: 30px;">
+            <i class="fas fas fas fa-warehouse" style="font-size: 40px;"><a href="http://127.0.0.1:8000/balajigroup/rawmaterialdashboard" style="padding: 5px; text-decoration:none; font-size: 25px;"> Raw Material </i></a>
+            <i class="fas fa-hat-cowboy" style="font-size: 40px;"><a href="http://127.0.0.1:8000/balajigroup/metalsgooddashboard" style="padding: 5px; text-decoration:none; font-size: 25px;"> Metal Good </i></a>
+            <i class="fas fa-flask" style="font-size: 40px;"><a href="http://127.0.0.1:8000/balajigroup/chemicalizeddashboard" style="padding: 5px; text-decoration:none; font-size: 25px;"> Chemicalized </i></a>
+            <i class="fas fa-building" style="font-size: 40px;"><a href="http://127.0.0.1:8000/balajigroup/othersgooddashboard" style="padding: 5px; text-decoration:none; font-size: 25px;"> Other's Good </i></a>
+        </div>
+        <div class="board">
+            {% if stu %}
+            <table width="100%">
+                <thead>
+                    <tr style="background-color:#2849a3; color: #fff; font-family: 'Times New Roman', Times, serif;">
+                        <th> Liquid </th>
+                        <th> Qty</th>
+                        <th> Plastic</th>
+                        <th> Qty </th>
+                        <th> Barrel </th>
+                        <th> Qty </th>
+                        <th> Quick Supporter </th>
+                        <th> Qty </th>
+                        <th> Wood </th>
+                        <th> Qty </th>
+                        <th> Supplier </th>
+
+                    </tr>
+                        {% for st in stu %}
+
+                        <tr>
+                            <td>{{st.liquid}}</td>
+                            <td>{{st.liquidquantity}}</td>
+                            <td>{{st.plastic}}</td>
+                            <td>{{st.plasterquantity}}</td>
+                            <td>{{st.barrel}}</td>
+                            <td>{{st.barrelquantity}}</td>
+                            <td>{{st.supporter}}</td>
+                            <td>{{st.supportquantity}}</td>
+                            <td>{{st.wood}}</td>
+                            <td>{{st.woodquantity}}</td>
+                            <td>{{st.supplier}}</td>
+
+                        </tr>
+                        {% endfor %}
+                </thead>    
+            </table>
+                        {% else %}
+                        {% endif %}
+        </div>
+        
+    </section>
+</body>
+</html>

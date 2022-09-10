@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'maintananceuser.css'%}">
+    <title> Admin Panel | BGC</title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/adminpanel">Dashboard</a></li>
+            <li><i class="fas fa-people-arrows"></i><a href="http://127.0.0.1:8000/balajigroup/operationadmin">Operation Panel</a></li>
+            <li><i class="fas fa-desktop"></i><a href="http://127.0.0.1:8000/balajigroup/itadmin">IT Operation</a></li>
+            <li><i class="fas fa-rupee-sign"></i><a href="http://127.0.0.1:8000/balajigroup/financeadmin">Finance Department</a></li>
+            <li><i class="fas fa-restroom"></i><a href="http://127.0.0.1:8000/balajigroup/hradmin">HR Department</a></li>
+            <li><i class="fas fa-tools"></i><a href="http://127.0.0.1:8000/balajigroup/maintananceadmin">Maintanance</a></li>
+            <li><i class="fas fa-unlock"></i><a href="http://127.0.0.1:8000/balajigroup/passwordreset">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            Operation Panel
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <i class="fas fa-people-carry"></i>
+                <div>
+                    <h3>Operation</h3>
+                    <span>New Users</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-desktop"></i>
+                <div>
+                    <h3>IT Dept</h3>
+                    <span>Total Order</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-rupee-sign"></i>
+                <div>
+                    <h3>Finance</h3>
+                    <span>Product Sell</span>
+                </div>
+            </div>
+
+            <div class="val-box">
+                <i class="fas fa-restroom"></i>
+                <div>
+                    <h3>HR Dept</h3>
+                    <span>This Month</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="board">
+            <table width="100%"> <br>
+                <form action="{% url 'maintananceuser'%}" method="POST">
+                    {% csrf_token %}
+                    <label for="username" class="username"> Username </label>
+                    <input type="text" class="inputusername" name="username" placeholder="Please enter new user username" required> <br> <br> <br>
+
+                    <label for="first_name" class="firstname"> First Name </label>
+                    <input type="text" class="inputfirstname" name="first_name" placeholder="First name" required>
+
+                    <label for="username" class="lastname"> Last Name </label>
+                    <input type="text" class="inputlastname" name="last_name" placeholder="Last name" required> <br> <br> <br>
+
+                    <label for="username" class="email"> Email Id </label>
+                    <input type="email" class="inputemail" name="email" placeholder="Enter email id" required>
+
+                    <label for="username" class="password1" style="font-size: 20px; margin-left: 190px;"> Password </label>
+                    <input type="text" class="inputpassword1" name="password1" placeholder="Enter password" style="border-radius: 3px; margin-left: 74px; width: 22%; height: 25px;font-size: 17px;font-family: 'Times New Roman', Times, serif;" required> <br> <br> <br>
+
+                    <label for="username" class="password2" style="margin-left: 595px; font-size:20px;"> Confirm Password </label>
+                    <input type="text" class="inputpassword2" name="password2" placeholder="Enter password" style="border-radius: 3px; margin-left: 3px; width: 22%; height: 25px; font-size: 17px; font-family: 'Times New Roman', Times, serif;" required><br><br> <br>
+
+                    <button type="submit" class="butn" name="btn" id="submit"> Create </button> <br><br> <br><br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Perfect !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+
+            {% for message in messages %} 
+                {% if message.tags == 'error' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Sorry !", m, "error")
+                </script>
+                {% endif%}
+            {% endfor %}
+
+            {% for message in messages %} 
+                {% if message.tags == 'info' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Hooooorry !", m, "info")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </table>
+        </div>
+    </section>
+
+</body>
+</html>

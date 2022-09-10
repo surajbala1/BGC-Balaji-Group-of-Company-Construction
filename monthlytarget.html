@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png" sizes="32x32">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link rel="stylesheet" href="{%static 'monthlytarget.css'%}">
+    <link rel="stylesheet" href="{%static 'contact.css'%}">
+    <title> Operaition Panel | BGC </title>
+</head>
+<body>
+    <section id="menu">
+        <div class="logo">
+            <img src="https://bgcgroup.ca/wp-content/uploads/2019/07/BGC-Logo-large.png">
+            {% if user.is_authenticated %}
+            <h2 style="margin-left: 18px;"> Hello, {{user.first_name}}</h2>
+        </div> <br>
+        <h4 style="color: #fff;"> <marquee>{{user.last_login}}</marquee></h4>
+        <div class="items">
+            <li><i class="fas fa-chart-pie"></i><a href="http://127.0.0.1:8000/balajigroup/operationpanel">Dashboard</a></li>
+            <li><i class="fas fas fa-user-secret"></i><a href="http://127.0.0.1:8000/balajigroup/operationlabour">Create Target</a></li>
+            <li><i class="fas fa-money-bill"></i><a href="http://127.0.0.1:8000/balajigroup/purchase">Purchase Raw Material</a></li>
+            <li><i class="fas fa-store-alt"></i><a href="http://127.0.0.1:8000/balajigroup/storations">Storation</a></li>
+            <li><i class="fas fa-recycle"></i><a href="http://127.0.0.1:8000/balajigroup/production">Production</a></li>
+            <li><i class="fas fa-clipboard-check"></i><a href="http://127.0.0.1:8000/balajigroup/dispatch">Dispatch</a></li>
+            <li><i class="fas fa-unlock"></i><a href="">Change Password</a></li>
+            <li><i class="fas fa-arrow-alt-circle-left"></i><a href="http://127.0.0.1:8000/balajigroup/logout">Logout</a></li>
+            {% else %}
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="interface">
+        <div class="navigation">
+            <div class="n1">
+                <div>
+                    <i id="menu-btn" class="fas fa-bars"></i>
+                </div>
+                <div class="search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <h3 style="margin-left: 245px;"> Auth_By:-<b>{{user.first_name}} {{user.last_name}}</b> </h3>
+            </div>
+            <div class="profile">
+                <i class="far fa-bell"></i>
+                <img src="https://pbs.twimg.com/profile_banners/1058625081159471104/1556707159/1080x360">
+            </div>
+        </div>
+
+        <h3 class="i-name">
+            <i class="fas fa-calendar"> Task Creation Panel (Monthly, Weekly, Today, Immediately) </i>
+        </h3>
+        <div class="values">
+            <div class="val-box">
+                <form action="{% url 'monthlytarget'%}" method="POST"> <br><br> <br>
+                    {% csrf_token %}
+                <label for="area" class="area1">Select Area</label>
+                    <select name="area" class="area" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Building Infra"> Building-Infra </option>
+                        <option value="Concrete Road"> Concrete Road </option>
+                        <option value="Drainage"> Drainage </option>
+                        <option value="Road Side Wall"> Road Side Wall </option>
+                        <option value="Building Boundary"> Building-Boundary </option>
+                        <option value="Road Side Drain"> Road Side Drain </option>
+                        <option value="Gate Piller"> Gate Piller </option>
+                        <option value="Corporate"> Corporate </option>
+                        <option value="Metro"> Metro </option>
+                        <option value="Airport"> Airport </option>
+                        <option value="Oil & Gas"> Oil & Gas </option>
+                        <option value="Urban Infrastructure"> Urban Infrastructure </option>
+                        <option value="Metals & Minerals"> Metals & Minerals </option>
+                        <option value="Transportation Lin Herbal"> Transportation Link Herbal </option>
+                    </select>
+
+                    <label for="area" class="delivery"> Delivery Date & Time From </label>
+                    <input type="datetime-local" name="deliverydate" class="deliverydate" required> <br><br> <br>
+
+                    <label for="quantity" class="quantity"> Set Quantity </label>
+                    <input type="number" class="quantity1" name="quantity" placeholder="How Many Site" required>
+                    
+                    <label for="delivery" class="deliveryfor"> Delivery For (Client Name)</label>
+                    <input type="text" class="deliveryfor1" name="delivery" placeholder="Company Name" required> <br><br> <br>
+
+                    <label for="location" class="location"> Client Location</label>
+                    <input type="text" class="location1" name="location" placeholder="Company Location" required>
+
+                    <label for="targetmode" class="mode"> Target Mode</label>
+                    <select name="mode" class="mode1" style="width: 223px;" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Monthly"> Monthly </option>
+                        <option value="Weekly"> Weekly </option>
+                        <option value="Today"> Today </option>
+                        <option value="Immediately"> Immediately </option>
+                    </select> <br><br> <br>
+
+                    <label for="peolocation" class="prolocation"> Pro. Location </label>
+                    <input type="text" class="prolocation1" name="prolocation" placeholder="Property Location" required>
+
+                    <label for="address" class="address"> Property Address </label>
+                    <input type="text" class="address1" name="address" placeholder="Property Address" required> <br> <br> <br>
+
+                    <label for="areawork" class="areawork"> Area Work </label>
+                    <select name="areawork" class="areawork1" required>
+                        <option value="" disabled>--Please Choose-- </option>
+                        <option value="Construction"> Construction </option>
+                        <option value="Re Construction"> Re-construction </option>
+                        <option value="Maintanance"> Maintanance </option>
+                        <option value="New Site"> New Site </option>
+                    </select>
+
+                    <label for="priority" class="priority"> Set Priority </label>
+                    <select name="priority" class="priority1" required>
+                        <option value="" disabled>--Please Choose Priority-- </option>
+                        <option value="Normal"> Normal </option>
+                        <option value="Urgent"> Urgent </option>
+                        <option value="Priority"> Priority </option>
+                        <option value="High Priority"> High Priority </option>
+                    </select> <br> <br> <br>
+                    
+                    <button type="submit" class="btn" name="btn2" id="submit"> Target </button>
+
+                    <label for="area" class="delivery1"> Delivery Date & Time To </label>
+                    <input type="datetime-local" name="deliverydate1" class="deliverydate1" required> <br><br> <br>
+
+                </form>
+
+                {% for message in messages %} 
+                {% if message.tags == 'success' %}
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+                    var m = "{{ message }}";
+                    swal("Waoooooo !", m, "success")
+                </script>
+                {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+</html>
